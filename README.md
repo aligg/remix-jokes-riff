@@ -1,6 +1,6 @@
 # Welcome to Squirrel Jokes!
 
-This is a riff off of the jokes app from the [Remix Docs](https://remix.run/docs) tutorial. My sister is a speech language pathologist and I am hoping she can use this with her students.
+This is a riff off of the jokes app from the [Remix Docs](https://remix.run/docs) tutorial. My sister is a speech language pathologist and I am hoping she can use this with her students. This app is live [here](https://remix-jokes-riff.herokuapp.com/).
 
 ## Development
 
