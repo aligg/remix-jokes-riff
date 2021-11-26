@@ -28,8 +28,6 @@ export default function JokesRoute() {
   let data = useLoaderData();
   const joke = data.randomJoke;
 
-  let [showPunchline, setShowPunchline] = useState(false);
-
   return (
     <div className="jokes-layout">
       <header className="jokes-header">
@@ -46,16 +44,10 @@ export default function JokesRoute() {
         <div className="jokes-container">
           <div className="jokes-content">
             <h1>{joke.content}</h1>
-            <img
-              id="nut"
-              height={100}
-              width={100}
-              src={nut}
-              onClick={() => setShowPunchline(!showPunchline)}
-            />
+            <img id="nut" height={100} width={100} src={nut} />
             <p id="clickme">Click nut for punchline</p>
           </div>
-          <h1 id="punchline" className={showPunchline ? "visible" : "hidden"}>
+          <h1 id="punchline" className="hidden">
             {joke.punchline}
           </h1>
         </div>
@@ -63,6 +55,17 @@ export default function JokesRoute() {
           <Outlet />
         </div>
       </main>
+      <script
+        dangerouslySetInnerHTML={{
+          __html: `
+      document.addEventListener('DOMContentLoaded', () => {
+        document.getElementById('nut').onclick = (event) => {
+          document.getElementById('punchline').classList.add("visible")
+        }
+      });
+    `,
+        }}
+      ></script>
     </div>
   );
 }
