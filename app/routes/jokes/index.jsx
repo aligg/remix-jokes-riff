@@ -1,3 +1,29 @@
+import { Link, Outlet, useLoaderData } from "remix";
+import React, { useState } from "react";
+import nut from "../../../public/nut.svg";
+import { db } from "~/utils/db.server";
+import stylesUrl from "../../styles/jokes.css";
+
+export let links = () => {
+  return [
+    {
+      rel: "stylesheet",
+      href: stylesUrl,
+    },
+  ];
+};
+
+export let loader = async () => {
+  let count = await db.joke.count();
+  let randomRowNumber = Math.floor(Math.random() * count);
+  let [randomJoke] = await db.joke.findMany({
+    take: 1,
+    skip: randomRowNumber,
+  });
+  let data = { randomJoke };
+  return data;
+};
+
 export default function JokesRoute() {
   let data = useLoaderData();
   const joke = data.randomJoke;
